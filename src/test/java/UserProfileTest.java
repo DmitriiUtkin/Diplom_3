@@ -16,7 +16,6 @@ public class UserProfileTest {
     private String accessToken;
 
     Faker faker = new Faker();
-    String nameUser = faker.name().lastName();
     String emailUser = faker.internet().emailAddress();
     String passwordUser = faker.internet().emailAddress();
 
@@ -25,7 +24,7 @@ public class UserProfileTest {
 
         userClient = new UserClient();
         user = UserGenerator.base();
-        ValidatableResponse response = userClient.addUser(user);
+        userClient.addUser(user);
         ValidatableResponse loginResponse = userClient.login(UserCredentials.from(user));
         accessToken =loginResponse.extract().path("accessToken");
 
@@ -65,7 +64,7 @@ public class UserProfileTest {
     public void enterConstructorFromUserAccountProfileTest() {
 
         HomePage homePage = new HomePage(driver);
-        boolean isFinishOrderButtonDisplayed = homePage.clickEnterAccountButton()
+        homePage.clickEnterAccountButton()
                 .enterLoginFields(emailUser, passwordUser)
                 .clickEnterButtonLoginPage()
                 .clickUserAccountButtonAfterAuthorization()
@@ -79,7 +78,7 @@ public class UserProfileTest {
     public void enterLogoFromUserAccountProfileTest() {
 
         HomePage homePage = new HomePage(driver);
-        boolean isFinishOrderButtonDisplayed = homePage.clickEnterAccountButton()
+        homePage.clickEnterAccountButton()
                 .enterLoginFields(emailUser, passwordUser)
                 .clickEnterButtonLoginPage()
                 .clickUserAccountButtonAfterAuthorization()
@@ -92,7 +91,7 @@ public class UserProfileTest {
     public void logoutFromUserAccountProfileTest() {
 
         HomePage homePage = new HomePage(driver);
-        boolean isLoginPageDisplayed = homePage.clickEnterAccountButton()
+        homePage.clickEnterAccountButton()
                 .enterLoginFields(emailUser, passwordUser)
                 .clickEnterButtonLoginPage()
                 .clickUserAccountButtonAfterAuthorization()

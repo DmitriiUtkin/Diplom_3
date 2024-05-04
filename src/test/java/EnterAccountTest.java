@@ -17,7 +17,6 @@ public class EnterAccountTest {
         private String accessToken;
 
     Faker faker = new Faker();
-    String nameUser = faker.name().lastName();
     String emailUser = faker.internet().emailAddress();
     String passwordUser = faker.internet().emailAddress();
 
@@ -27,7 +26,7 @@ public class EnterAccountTest {
 
             userClient = new UserClient();
             user = UserGenerator.base();
-            ValidatableResponse response = userClient.addUser(user);
+            userClient.addUser(user);
             ValidatableResponse loginResponse = userClient.login(UserCredentials.from(user));
             accessToken =loginResponse.extract().path("accessToken");
 
@@ -55,7 +54,7 @@ public class EnterAccountTest {
         public void enterAccountByEnterAccountButtonOnMainPageTest() {
 
             HomePage homePage = new HomePage(driver);
-            boolean isFinishOrderButtonDisplayed = homePage.clickEnterAccountButton()
+            homePage.clickEnterAccountButton()
                     .enterLoginFields(emailUser, passwordUser)
                     .clickEnterButtonLoginPage()
                     .isFinishOrderButtonDisplayed();
@@ -66,7 +65,7 @@ public class EnterAccountTest {
         public void enterAccountByEnterUserAccountButtonOnMainPageTest() {
 
         HomePage homePage = new HomePage(driver);
-        boolean isFinishOrderButtonDisplayed = homePage.clickUserAccountButton()
+        homePage.clickUserAccountButton()
                 .enterLoginFields(emailUser, passwordUser)
                 .clickEnterButtonLoginPage()
                 .isFinishOrderButtonDisplayed();
@@ -77,7 +76,7 @@ public class EnterAccountTest {
         public void enterAccountInRegistrationFormTest() {
 
         HomePage homePage = new HomePage(driver);
-        boolean isFinishOrderButtonDisplayed = homePage.clickUserAccountButton()
+        homePage.clickUserAccountButton()
                 .clickRegisterButtonLoginPage()
                 .clickEnterButtonInRegistrationForm()
                 .enterLoginFields(emailUser, passwordUser)
@@ -90,8 +89,7 @@ public class EnterAccountTest {
         public void enterAccountInForgottenPasswordFormTest() {
 
         HomePage homePage = new HomePage(driver);
-        boolean isFinishOrderButtonDisplayed = homePage
-                .clickUserAccountButton()
+        homePage.clickUserAccountButton()
                 .clickRestorePasswordButton()
                 .clickEnterButtonForgotPasswordPage()
                 .enterLoginFields(emailUser, passwordUser)

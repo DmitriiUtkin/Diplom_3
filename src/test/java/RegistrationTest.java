@@ -40,8 +40,7 @@ public class RegistrationTest {
     public void registerUserSuccessTest() {
 
         HomePage homePage = new HomePage(driver);
-        boolean isloginPageDisplayed = homePage
-                .clickUserAccountButton()
+        homePage.clickUserAccountButton()
                 .clickRegisterButtonLoginPage()
                 .enterRegistrationFields(nameUser, emailUser, passwordUser)
                 .clickRegisterButton()
@@ -56,8 +55,7 @@ public class RegistrationTest {
     @DisplayName("Ошибка при регистрации пользователя с паролем менее 6 символов")
     public void registerErrorPasswordLess6CharactersTest() {
         HomePage homePage = new HomePage(driver);
-        boolean isErrorMessageDisplayedWhenPasswordLess6Characters = homePage
-                .clickUserAccountButton()
+        homePage.clickUserAccountButton()
                 .clickRegisterButtonLoginPage()
                 .enterRegistrationFields(nameUser, emailUser, "12345")
                 .clickRegisterButton()
